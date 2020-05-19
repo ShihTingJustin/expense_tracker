@@ -1,3 +1,55 @@
-<h1>index</h1>
-<a href="/create">create</a>
-<a href="/edit">edit</a>
+<div class="conatainer">
+  <div class="form-group col-md-4">
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>家居物業</option>
+      <option>交通出行</option>
+      <option>休閒娛樂</option>
+      <option>餐飲食品</option>
+      <option>其他</option>
+    </select>
+  </div>
+  <div class="show-total-expense d-flex">
+    <h6>總金額：</h6>
+    <h1>123456</h1>
+  </div>
+  <div class="expense-area">
+    <ul class="list-group list-group-flush">
+      {{#each records}}
+      <li class="list-group-item">
+        <div class="expense-record d-flex">
+          <div class="expense-record-left">
+            <div class="record-name">
+              {{ this.name }}
+            </div>
+            <div class="record-date">
+              2020/5/20
+            </div>
+          </div>
+          <div class="expense-record-right d-flex justify-content-end align-items-center">
+            <div class="record-amount">
+              {{ this.amount }}
+            </div>
+            <div class="record-button-group d-flex">
+              <form action="/records/edit" method="GET">
+                <button class="edit-btn">edit</button>
+              </form>
+              <form action="" method="GET">
+                <button class="delete-btn">delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+    <form action="/records/create" method="GET">
+      <button class="create-btn">新增支出</button>
+    </form>
+
+  </div>
+
+
+
+
+</div>
