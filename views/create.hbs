@@ -1,11 +1,20 @@
-<div class="container h-100">
-  <div class="row h-100 my-auto justify-content-center align-items-center text-center">
-    <form class="col-4" action="/records/create" method="POST" onsubmit="return editCheckAgain()">
+<div class="container">
+  <div class="row my-auto justify-content-center align-items-center text-center">
+    <form class="col-4" action="/records" method="POST" onsubmit="return submitCheck()">
       <input required type="text" placeholder="名稱" name="name" class="form-control input-area">
-      <input type="text" placeholder="日期" name="date" class="form-control input-area" onfocus="(this.type='date')"
-        onblur="(this.type='text')">
-      <input type="text" placeholder="類別" name="category" class="form-control input-area">
-      <input type="text" placeholder="金額" name="image" class="form-control input-area">
+      <input required type="text" placeholder="日期" name="date" class="form-control input-area"
+        onfocus="(this.type='date')" onblur="(this.type='text')">
+      <div class="form-group">
+        <select required name="category" class="form-control category-selector">
+          <option value="">類別</option>
+          <option value="house">家居物業</option>
+          <option value="transport">交通出行</option>
+          <option value="entertainment">休閒娛樂</option>
+          <option value="food">餐飲食品</option>
+          <option value="others">其他</option>
+        </select>
+      </div>
+      <input required type="text" placeholder="金額" name="amount" class="form-control input-area">
       <button type="submit" class="btn btn-outline-danger mt-3 mb-5">Create</button>
     </form>
   </div>

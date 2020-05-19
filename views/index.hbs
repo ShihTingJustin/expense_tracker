@@ -1,5 +1,5 @@
 <div class="conatainer">
-  <div class="form-group col-md-4">
+  <div class="form-group">
     <select id="inputState" class="form-control">
       <option selected>Choose...</option>
       <option>家居物業</option>
@@ -23,7 +23,7 @@
               {{ this.name }}
             </div>
             <div class="record-date">
-              2020/5/20
+              {{ this.date }}
             </div>
           </div>
           <div class="expense-record-right d-flex justify-content-end align-items-center">
@@ -31,7 +31,7 @@
               {{ this.amount }}
             </div>
             <div class="record-button-group d-flex">
-              <form action="/records/edit" method="GET">
+              <form action="/records/edit/{{ this._id }}" method="GET">
                 <button class="edit-btn">edit</button>
               </form>
               <form action="" method="GET">
@@ -43,10 +43,9 @@
       </li>
       {{/each}}
     </ul>
-    <form action="/records/create" method="GET">
+    <a href="/records/create">
       <button class="create-btn">新增支出</button>
-    </form>
-
+    </a>
   </div>
 
 

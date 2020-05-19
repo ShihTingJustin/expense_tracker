@@ -14,7 +14,7 @@ const recordSchema = new Schema({
     required: false
   },
   'amount': {
-    type: Number,
+    type: String,
     required: true
   }
 })
