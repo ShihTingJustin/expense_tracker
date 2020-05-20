@@ -1,23 +1,30 @@
-<div class="conatainer">
+<div class="container w-50">
   <div class="form-group">
-    <select id="inputState" class="form-control">
-      <option selected>Choose...</option>
-      <option>家居物業</option>
-      <option>交通出行</option>
-      <option>休閒娛樂</option>
-      <option>餐飲食品</option>
-      <option>其他</option>
+    <select name="category" class="form-control category-selector" onchange="location = this.value;">
+      <option class="filter-title" value="">類別</option>
+      <option class="filter-house" value="/filter/house">家居物業</option>
+      <option class="filter-transport" value="/filter/transport">交通出行</option>
+      <option class="filter-entertainment" value="/filter/entertainment">休閒娛樂</option>
+      <option class="filter-food" value="/filter/food">餐飲食品</option>
+      <option class="filter-others" value="/filter/others">其他</option>
     </select>
   </div>
   <div class="show-total-expense d-flex">
     <h6>總金額：</h6>
-    <h1>123456</h1>
+    <h1>{{ totalAmount }}</h1>
   </div>
   <div class="expense-area">
     <ul class="list-group list-group-flush">
       {{#each records}}
       <li class="list-group-item">
         <div class="expense-record d-flex">
+          <div class="expense-record-icon d-flex align-items-center">
+            {{#eq this.category 'house'}}<i class="fas fa-home fa-2x "></i>{{/eq}}
+            {{#eq this.category 'transport'}}<i class="fas fa-shuttle-van fa-2x"></i>{{/eq}}
+            {{#eq this.category 'entertainment'}}<i class="fas fa-grin-beam fa-2x"></i>{{/eq}}
+            {{#eq this.category 'food'}}<i class="fas fa-utensils fa-2x"></i>{{/eq}}
+            {{#eq this.category 'others'}}<i class="fas fa-ellipsis-h fa-2x"></i>{{/eq}}
+          </div>
           <div class="expense-record-left">
             <div class="record-name">
               {{ this.name }}
@@ -32,10 +39,10 @@
             </div>
             <div class="record-button-group d-flex">
               <form action="/records/edit/{{ this._id }}" method="GET">
-                <button class="edit-btn">edit</button>
+                <button class="edit-btn fas fa-pen"></button>
               </form>
               <form action="/records/delete/{{ this._id }}" method="GET" onsubmit="return deleteCheck()">
-                <button class="delete-btn">delete</button>
+                <button class="delete-btn fas fa-times-circle"></button>
               </form>
             </div>
           </div>
