@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center align-items-center text-center">
-    <form class="" action="/records/{{ record._id }}" method="POST" onsubmit="return submitCheck()">
+    <form class="" action="/records/{{ record._id }}?_method=PUT" method="POST" onsubmit="return submitCheck()">
       <input required type="text" placeholder="名稱" name="name" class="form-control input-area"
         value="{{ record.name }}">
       <input required type="text" placeholder="日期" name="date" class="form-control input-area"

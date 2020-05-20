@@ -25,7 +25,7 @@ router.get('/edit/:id', (req, res) => {
     .then(record => res.render('edit', { record }))
 })
 
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const { id } = req.params
   return Record.findById(id)
     .then(record => {
@@ -37,7 +37,7 @@ router.post('/:id', (req, res) => {
 })
 
 // DELETE
-router.get('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const { id } = req.params
   return Record.findById(id)
     .then(record => record.remove())
@@ -45,6 +45,7 @@ router.get('/delete/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// filter
 router.get('/filter/', (req, res) => {
   const { category } = req.query
   return Record.find({ category })
@@ -57,6 +58,7 @@ router.get('/filter/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// sorts
 router.get('/sorts/', (req, res) => {
   const { name, way } = req.query
   return Record.find()
@@ -65,6 +67,7 @@ router.get('/sorts/', (req, res) => {
     .then(records => res.render('index', { records }))
     .catch(error => console.log(error))
 })
+
 
 // router.get('/filter/', (req, res) => {
 //   const { category } = req.query

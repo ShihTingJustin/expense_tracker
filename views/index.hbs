@@ -56,7 +56,8 @@
                   <form action="/records/edit/{{ this._id }}" method="GET" class="">
                     <button class="edit-btn fas fa-pen"></button>
                   </form>
-                  <form action="/records/delete/{{ this._id }}" method="GET" onsubmit="return deleteCheck()" class="">
+                  <form action="/records/{{ this._id }}?_method=DELETE" method="POST" onsubmit="return deleteCheck()"
+                    class="">
                     <button class="delete-btn fas fa-times-circle"></button>
                   </form>
                 </div>
