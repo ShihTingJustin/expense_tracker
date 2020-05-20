@@ -17,8 +17,12 @@
   margin: 0 0.4rem;
 }
 
-.total-amount, .edit-btn:hover, .expense-record:hover {
+.total-amount, .expense-record:hover {
   color: #007bff;
+}
+
+.edit-btn:hover {
+  color: #28a745;
 }
 
 .delete-btn:hover {

@@ -1,13 +1,20 @@
 <div class="container w-100">
   <div class="area mt-3 d-flex flex-column align-items-center">
-    <div class="form-group">
+    <div class="form-group d-flex" style="outline: auto;">
       <select name="category" class="form-control category-selector" onchange="location = this.value;">
         <option class="filter-title" value="">類別篩選</option>
-        <option class="filter-house" value="/filter/house">家居物業</option>
-        <option class="filter-transport" value="/filter/transport">交通出行</option>
-        <option class="filter-entertainment" value="/filter/entertainment">休閒娛樂</option>
-        <option class="filter-food" value="/filter/food">餐飲食品</option>
-        <option class="filter-others" value="/filter/others">其他</option>
+        <option class="filter-house" value="/records/filter=house">家居物業</option>
+        <option class="filter-transport" value="/records/filter=transport">交通出行</option>
+        <option class="filter-entertainment" value="/records/filter=entertainment">休閒娛樂</option>
+        <option class="filter-food" value="/records/filter=food">餐飲食品</option>
+        <option class="filter-others" value="/records/filter=others">其他</option>
+      </select>
+      <select name="sorting" class="form-control sorting-selector" onchange="location = this.value;">
+        <option class="sorting-title" value="">排序方式</option>
+        <option class="sorting-amount-desc" name="name" value="/records/sorts?name=amount&way=desc">金額(高 ~ 低)</option>
+        <option class="sorting-amount-asc" value="/records/sorts?name=amount&way=asc">金額(低 ~ 高)</option>
+        <option class="sorting-date-desc" value="/records/sorts?name=date&way=desc">日期(新 ~ 舊)</option>
+        <option class="sorting-date-asc" value="/records/sorts?name=date&way=asc">日期(舊 ~ 新)</option>
       </select>
     </div>
     <div class="show-total-expense d-flex  ">

@@ -45,6 +45,26 @@ router.get('/delete/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+router.get('/filter=:category', (req, res) => {
+  const { category } = req.params
+  return Record.find({ category: category })
+    .lean()
+    .then(records => {
+      let totalAmount = 0
+      records.forEach(record => totalAmount += Number(record.amount))
+      res.render('index', { records, totalAmount })
+    })
+    .catch(error => console.log(error))
+})
+
+router.get('/sorts/', (req, res) => {
+  const { name, way } = req.query
+  return Record.find()
+    .lean()
+    .sort({ [name]: way })
+    .then(records => res.render('index', { records }))
+    .catch(error => console.log(error))
+})
 
 
 

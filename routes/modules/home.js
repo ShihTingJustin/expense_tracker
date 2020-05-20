@@ -14,16 +14,4 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-router.get('/filter/:category', (req, res) => {
-  const { category } = req.params
-  return Record.find({ category: category })
-    .lean()
-    .then(records => {
-      let totalAmount = 0
-      records.forEach(record => totalAmount += Number(record.amount))
-      res.render('index', { records, totalAmount })
-    })
-    .catch(error => console.log(error))
-})
-
 module.exports = router
