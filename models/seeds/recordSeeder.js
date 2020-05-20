@@ -11,7 +11,7 @@ db.once('open', () => {
       category: pickCategory(),
       name: pickName(),
       date: pickDate(),
-      amount: Math.floor(Math.random() * 500)
+      amount: Math.floor(Math.random() * 500 + 50)
     })
   }
   console.log('done!')
@@ -32,10 +32,10 @@ function pickCategory() {
 function pickName() {
   switch (pickedCategory) {
     case 'house':
-      return '房租'
+      return '日常用品'
 
     case 'transport':
-      return '修車'
+      return '機車保養'
 
     case 'entertainment':
       return '看電影'
