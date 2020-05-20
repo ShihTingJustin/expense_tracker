@@ -1,5 +1,5 @@
 # Expense Tracker
-A simple restaurant website built with Node.js and Express.
+A simple expense tracker built with Node.js and Express.
 
 ## Features
 1. Record and track your expense
