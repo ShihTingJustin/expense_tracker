@@ -14,10 +14,10 @@
 .record-button-group button {
   background: transparent;
   border: none;
-  margin: 0 0.3rem;
+  margin: 0 0.4rem;
 }
 
-.edit-btn:hover {
+.total-amount, .edit-btn:hover, .expense-record:hover {
   color: #007bff;
 }
 
@@ -28,3 +28,4 @@
 .record-amount {
   font-size: 1.1rem;
 }
+

@@ -1,5 +1,5 @@
 <div class="container w-100">
-  <div class="area mt-3 d-flex flex-column align-items-center" style="outline: auto;">
+  <div class="area mt-3 d-flex flex-column align-items-center">
     <div class="form-group">
       <select name="category" class="form-control category-selector" onchange="location = this.value;">
         <option class="filter-title" value="">類別篩選</option>
@@ -10,47 +10,49 @@
         <option class="filter-others" value="/filter/others">其他</option>
       </select>
     </div>
-    <div class="show-total-expense  d-flex  ">
+    <div class="show-total-expense d-flex  ">
       <small class="mx-3">總金額：</small>
-      <h1 class="">$ {{ totalAmount }}</h1>
+      <h1 class="total-amount">$ {{ totalAmount }}</h1>
     </div>
     <div class="expense-area col-12">
-      <ul class="list-group list-group-flush">
-        {{#each records}}
-        <li class="list-group-item list-group-item-action">
-          <div class="expense-record d-flex">
-            <div class="expense-record-icon d-flex align-items-center col-2">
-              {{#eq this.category 'house'}}<i class="fas fa-home fa-2x "></i>{{/eq}}
-              {{#eq this.category 'transport'}}<i class="fas fa-car fa-2x"></i>{{/eq}}
-              {{#eq this.category 'entertainment'}}<i class="fas fa-grin-beam fa-2x"></i>{{/eq}}
-              {{#eq this.category 'food'}}<i class="fas fa-utensils fa-2x"></i>{{/eq}}
-              {{#eq this.category 'others'}}<i class="fas fa-ellipsis-h fa-2x"></i>{{/eq}}
-            </div>
-            <div class="expense-record-left col-4">
-              <div class="record-name">
-                {{ this.name }}
+      <div class="rounded  p-4" style="border: 1.5px solid #007bff;">
+        <ul class="list-group list-group-flush">
+          {{#each records}}
+          <li class="list-group-item list-group-item-action bg-light">
+            <div class="expense-record d-flex">
+              <div class="expense-record-icon d-flex align-items-center col-2">
+                {{#eq this.category 'house'}}<i class="fas fa-home fa-2x "></i>{{/eq}}
+                {{#eq this.category 'transport'}}<i class="fas fa-car fa-2x"></i>{{/eq}}
+                {{#eq this.category 'entertainment'}}<i class="fas fa-grin-beam fa-2x"></i>{{/eq}}
+                {{#eq this.category 'food'}}<i class="fas fa-utensils fa-2x"></i>{{/eq}}
+                {{#eq this.category 'others'}}<i class="fas fa-ellipsis-h fa-2x"></i>{{/eq}}
               </div>
-              <small class="record-date">
-                {{ this.date }}
-              </small>
-            </div>
-            <div class="record-amount font-weight-bolder d-flex align-items-center justify-content-center col-4">
-              $ {{ this.amount }}
-            </div>
-            <div class="expense-record-right d-flex justify-content-end align-items-center col-2">
-              <div class="record-button-group row">
-                <form action="/records/edit/{{ this._id }}" method="GET" class="">
-                  <button class="edit-btn fas fa-pen"></button>
-                </form>
-                <form action="/records/delete/{{ this._id }}" method="GET" onsubmit="return deleteCheck()" class="">
-                  <button class="delete-btn fas fa-times-circle"></button>
-                </form>
+              <div class="expense-record-left col-4">
+                <div class="record-name">
+                  {{ this.name }}
+                </div>
+                <small class="record-date">
+                  {{ this.date }}
+                </small>
+              </div>
+              <div class="record-amount font-weight-bolder d-flex align-items-center justify-content-center col-4">
+                $ {{ this.amount }}
+              </div>
+              <div class="expense-record-right d-flex justify-content-end align-items-center col-2">
+                <div class="record-button-group row">
+                  <form action="/records/edit/{{ this._id }}" method="GET" class="">
+                    <button class="edit-btn fas fa-pen"></button>
+                  </form>
+                  <form action="/records/delete/{{ this._id }}" method="GET" onsubmit="return deleteCheck()" class="">
+                    <button class="delete-btn fas fa-times-circle"></button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-        {{/each}}
-      </ul>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
       <div class="text-center">
         <a href="/records/create">
           <button class="create-btn btn btn-outline-primary mt-3 mb-5">新增支出</button>
