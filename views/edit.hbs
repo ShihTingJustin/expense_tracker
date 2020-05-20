@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row my-auto justify-content-center align-items-center text-center">
-    <form class="col-4" action="/records/{{ record._id }}" method="POST" onsubmit="return submitCheck()">
+  <div class="row justify-content-center align-items-center text-center">
+    <form class="" action="/records/{{ record._id }}" method="POST" onsubmit="return submitCheck()">
       <input required type="text" placeholder="名稱" name="name" class="form-control input-area"
         value="{{ record.name }}">
       <input required type="text" placeholder="日期" name="date" class="form-control input-area"
@@ -17,7 +17,7 @@
       </div>
       <input required type="text" placeholder="金額" name="amount" class="form-control input-area"
         value="{{ record.amount }}">
-      <button type="submit" class="btn btn-outline-danger mt-3 mb-5">Save</button>
+      <button type="submit" class="btn btn-outline-primary mt-3 mb-5">送出</button>
     </form>
   </div>
 </div>

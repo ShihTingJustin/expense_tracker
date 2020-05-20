@@ -8,10 +8,17 @@ router.get('/', (req, res) => {
     .lean()
     .then(records => {
       let totalAmount = 0
-      records.forEach(record => totalAmount += Number(record.amount))
+      records.forEach(record => {
+        totalAmount += Number(record.amount)
+      })
+      console.log(totalAmount)
       res.render('index', { records, totalAmount })
     })
     .catch(error => console.error(error))
 })
+
+function setThousand(num) {
+  
+}
 
 module.exports = router
