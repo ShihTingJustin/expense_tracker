@@ -6,3 +6,25 @@
   padding: 0;
   margin: 0;
 }
+
+.expense-record-icon i {
+  color: #6c757d;
+}
+
+.record-button-group button {
+  background: transparent;
+  border: none;
+  margin: 0 0.3rem;
+}
+
+.edit-btn:hover {
+  color: #007bff;
+}
+
+.delete-btn:hover {
+  color: #dc3545;
+}
+
+.record-amount {
+  font-size: 1.1rem;
+}
