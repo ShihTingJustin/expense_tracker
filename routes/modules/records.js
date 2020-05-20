@@ -36,7 +36,14 @@ router.post('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+// DELETE
+router.get('/delete/:id', (req, res) => {
+  const { id } = req.params
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 
 

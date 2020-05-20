@@ -34,7 +34,7 @@
               <form action="/records/edit/{{ this._id }}" method="GET">
                 <button class="edit-btn">edit</button>
               </form>
-              <form action="" method="GET">
+              <form action="/records/delete/{{ this._id }}" method="GET" onsubmit="return deleteCheck()">
                 <button class="delete-btn">delete</button>
               </form>
             </div>
