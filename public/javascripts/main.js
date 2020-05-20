@@ -17,27 +17,29 @@ const food = document.querySelector('.filter-food')
 const others = document.querySelector('.filter-others')
 
 const pathname = window.location.pathname
-if (pathname.includes('/filter=house')) {
+const search = window.location.search
+if (pathname.includes('/filter') && search.includes('?category=house')) {
   selector.insertBefore(house, selector.firstChild)
   title.remove()
 }
 
-if (pathname.includes('/filter=transport')) {
+if (pathname.includes('/filter') && search.includes('?category=transport')) {
   selector.insertBefore(transport, selector.firstChild)
   title.remove()
 }
 
-if (pathname.includes('/filter=entertainment')) {
+if (pathname.includes('/filter') && search.includes('?category=entertainment')) {
   selector.insertBefore(entertainment, selector.firstChild)
   title.remove()
 }
 
-if (pathname.includes('/filter=food')) {
+if (pathname.includes('/filter') && search.includes('?category=food')) {
   selector.insertBefore(food, selector.firstChild)
   title.remove()
 }
 
-if (pathname.includes('/filter=others')) {
+if (pathname.includes('/filter') && search.includes('?category=others')) {
   selector.insertBefore(others, selector.firstChild)
   title.remove()
 }
+

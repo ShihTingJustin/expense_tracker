@@ -45,9 +45,9 @@ router.get('/delete/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.get('/filter=:category', (req, res) => {
-  const { category } = req.params
-  return Record.find({ category: category })
+router.get('/filter/', (req, res) => {
+  const { category } = req.query
+  return Record.find({ category })
     .lean()
     .then(records => {
       let totalAmount = 0
@@ -66,6 +66,27 @@ router.get('/sorts/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// router.get('/filter/', (req, res) => {
+//   const { category } = req.query
+//   return Record.find({ category })
+//     .lean()
+//     .then(records => {
+//       let totalAmount = 0
+//       records.forEach(record => totalAmount += Number(record.amount))
+//       res.render(`${category}`, { records, totalAmount })
+//     })
+//     .catch(error => console.log(error))
+// })
+
+// router.get('/filter?category=house_sorts', (req, res) => {
+//   //const { name, way } = req.query
+//   console.log(123, req.query)
+//   return Record.find()
+//     .lean()
+//     .sort({ [name]: way })
+//     .then(records => res.render('house', { records }))
+//     .catch(error => console.log(error))
+// })
 
 
 
