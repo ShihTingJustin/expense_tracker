@@ -59,12 +59,17 @@ router.get('/filter/', (req, res) => {
 })
 
 // sorts
-router.get('/sorts/', (req, res) => {
+router.get('/sort/', (req, res) => {
   const { name, way } = req.query
+  console.log(req.query)
   return Record.find()
     .lean()
     .sort({ [name]: way })
-    .then(records => res.render('index', { records }))
+    .then(records => {
+      let totalAmount = 0
+      records.forEach(record => totalAmount += Number(record.amount))
+      res.render('index', { records, totalAmount })
+    })
     .catch(error => console.log(error))
 })
 
