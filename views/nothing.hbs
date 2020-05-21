@@ -1,0 +1,44 @@
+<div class="form-group d-flex justify-content-end">
+  <div class="category-selector">
+    <select name="category" class="form-control" onchange="location = this.value;">
+      <option class="filter-title" value="">類別篩選</option>
+      <option class="filter-house" value="/records/filter?category=house">家居物業</option>
+      <option class="filter-transport" value="/records/filter?category=transport">交通出行</option>
+      <option class="filter-entertainment" value="/records/filter?category=entertainment">休閒娛樂</option>
+      <option class="filter-food" value="/records/filter?category=food">餐飲食品</option>
+      <option class="filter-others" value="/records/filter?category=others">其他</option>
+    </select>
+  </div>
+  <div class="sorting-selector">
+    <select name="sorting" class="form-control" onchange="location = this.value;">
+      <option class="sort-title" value="">排序方式</option>
+      <option class="sort-amount-desc" name="name" value="/records/sort?name=amount&way=desc">金額(高 ~ 低)</option>
+      <option class="sort-amount-asc" value="/records/sort?name=amount&way=asc">金額(低 ~ 高)</option>
+      <option class="sort-date-desc" value="/records/sort?name=date&way=desc">日期(新 ~ 舊)</option>
+      <option class="sort-date-asc" value="/records/sort?name=date&way=asc">日期(舊 ~ 新)</option>
+    </select>
+  </div>
+</div>
+
+<div class="container w-100">
+  <div class="area mt-3 d-flex flex-column align-items-center">
+
+    <div class="show-total-expense d-flex mb-3">
+      <small class="mx-3">總金額：</small>
+      <h1 class="total-amount">$ {{ totalAmount }}</h1>
+    </div>
+    <div class="expense-area col-12">
+      <div class="rounded  p-4" style="border: 1.5px solid #007bff;">
+        <div class="text-center">查無此類別的相關紀錄哦</div>
+      </div>
+      <div class="text-center">
+        <a href="/records/create">
+          <button class="create-btn btn btn-outline-primary mt-3 mb-5">新增支出</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

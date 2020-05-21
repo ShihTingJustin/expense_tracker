@@ -52,8 +52,13 @@ router.get('/filter/', (req, res) => {
     .lean()
     .then(records => {
       let totalAmount = 0
-      records.forEach(record => totalAmount += Number(record.amount))
-      res.render('index', { records, totalAmount })
+      if (records.length > 0) {
+        records.forEach(record => totalAmount += Number(record.amount))
+        res.render('index', { records, totalAmount })
+      } else {
+        res.render('nothing', { totalAmount })
+      }
+
     })
     .catch(error => console.log(error))
 })
