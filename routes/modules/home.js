@@ -37,7 +37,6 @@ router.get('/', (req, res) => {
   }
 
   setHomePage()
-
 })
 
 function setThousand(num) {

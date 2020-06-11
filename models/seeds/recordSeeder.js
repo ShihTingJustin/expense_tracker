@@ -8,7 +8,7 @@ db.once('open', () => {
   console.log('creating category ...')
 
   const createCategory = new Promise((resolve, reject) => {
-    Category.create(
+    return resolve(Category.create(
       {
         name: '家居物業',
         name_en: 'house',
@@ -34,12 +34,11 @@ db.once('open', () => {
         name_en: 'others',
         icon: 'fas fa-ellipsis-h'
       }
-    )
-    return resolve(true)
+    ))
   })
 
   const createRecord = new Promise((resolve, reject) => {
-    Record.create(
+    return resolve(Record.create(
       {
         category: 'house',
         name: '衛生紙',
@@ -75,8 +74,7 @@ db.once('open', () => {
         date: '2020-6-10',
         amount: '500'
       }
-    )
-    return resolve(true)
+    ))
   })
 
   async function runSeeder() {
@@ -87,6 +85,7 @@ db.once('open', () => {
     await createRecord
     console.log('done!')
     console.log('Seeder Complete!')
+    process.exit()
   }
 
   runSeeder()
