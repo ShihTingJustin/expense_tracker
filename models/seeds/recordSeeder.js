@@ -1,49 +1,93 @@
 const mongoose = require('mongoose')
 const Record = require('../record')
+const Category = require('../../models/category')
 const db = require('../../config/mongoose')
-
-let pickedCategory = ''
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  for (let i = 0; i < 10; i++) {
-    Record.create({
-      category: pickCategory(),
-      name: pickName(),
-      date: pickDate(),
-      amount: Math.floor(Math.random() * 500 + 50)
-    })
+  console.log('creating category ...')
+
+  const createCategory = new Promise((resolve, reject) => {
+    Category.create(
+      {
+        name: '家居物業',
+        name_en: 'house',
+        icon: 'fas fa-home'
+      },
+      {
+        name: '交通出行',
+        name_en: 'transport',
+        icon: 'fas fa-car'
+      },
+      {
+        name: '休閒娛樂',
+        name_en: 'entertainment',
+        icon: 'fas fa-grin-beam '
+      },
+      {
+        name: '餐飲食品',
+        name_en: 'food',
+        icon: 'fas fa-utensils'
+      },
+      {
+        name: '其他',
+        name_en: 'others',
+        icon: 'fas fa-ellipsis-h'
+      }
+    )
+    return resolve(true)
+  })
+
+  const createRecord = new Promise((resolve, reject) => {
+    Record.create(
+      {
+        category: 'house',
+        name: '衛生紙',
+        merchant: '全聯',
+        date: '2020-3-6',
+        amount: '180'
+      },
+      {
+        category: 'transport',
+        name: '機車保養',
+        merchant: '巷口機車行',
+        date: '2020-5-1',
+        amount: '250'
+      },
+      {
+        category: 'entertainment',
+        name: '看電影',
+        merchant: '美麗華大直影城',
+        date: '2020-1-10',
+        amount: '899'
+      },
+      {
+        category: 'food',
+        name: '聚餐',
+        merchant: '老四川',
+        date: '2020-2-7',
+        amount: '2399'
+      },
+      {
+        category: 'others',
+        name: '還款',
+        merchant: '',
+        date: '2020-6-10',
+        amount: '500'
+      }
+    )
+    return resolve(true)
+  })
+
+  async function runSeeder() {
+    await createCategory
+    console.log('done!')
+    console.log('Creating record ...')
+
+    await createRecord
+    console.log('done!')
+    console.log('Seeder Complete!')
   }
-  console.log('done!')
+
+  runSeeder()
 })
-
-function pickDate() {
-  let randomDate = Math.floor(Math.random() * 30 + 1)
-  let randomMonth = Math.floor(Math.random() * 12 + 1)
-  return `2020-${randomMonth}-${randomDate}`
-}
-
-function pickCategory() {
-  const category = ['house', 'transport', 'entertainment', 'food', 'others']
-  return pickedCategory = category[Math.floor(Math.random() * 5)]
-
-}
-
-function pickName() {
-  switch (pickedCategory) {
-    case 'house':
-      return '日常用品'
-
-    case 'transport':
-      return '機車保養'
-
-    case 'entertainment':
-      return '看電影'
-
-    case 'food':
-      return '吃飯'
-
-    case 'others':
-      return '忘了買什麼'
-  }
-}

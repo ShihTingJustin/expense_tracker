@@ -46,7 +46,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // filter
-router.get('/filter/', (req, res) => {
+router.get('/', (req, res) => {
   const { category } = req.query
   return Record.find({ category })
     .lean()
@@ -64,19 +64,19 @@ router.get('/filter/', (req, res) => {
 })
 
 // sorts
-router.get('/sort/', (req, res) => {
-  const { name, way } = req.query
-  console.log(req.query)
-  return Record.find()
-    .lean()
-    .sort({ [name]: way })
-    .then(records => {
-      let totalAmount = 0
-      records.forEach(record => totalAmount += Number(record.amount))
-      res.render('index', { records, totalAmount })
-    })
-    .catch(error => console.log(error))
-})
+// router.get('/sort/', (req, res) => {
+//   const { name, way } = req.query
+//   console.log(req.query)
+//   return Record.find()
+//     .lean()
+//     .sort({ [name]: way })
+//     .then(records => {
+//       let totalAmount = 0
+//       records.forEach(record => totalAmount += Number(record.amount))
+//       res.render('index', { records, totalAmount })
+//     })
+//     .catch(error => console.log(error))
+// })
 
 
 // router.get('/filter/', (req, res) => {
