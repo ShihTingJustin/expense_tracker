@@ -43,12 +43,17 @@
                 <div class="record-name">
                   {{ this.name }}
                 </div>
-                <small class="record-date">
-                  {{ this.date }}
-                </small>
+                <div class="record-merchant" style="font-size: 0.5rem;">
+                  明水三井
+                </div>
               </div>
-              <div class="record-amount font-weight-bolder d-flex align-items-center justify-content-center col-4">
-                $ {{ this.amount }}
+              <div class="record-amount col-4 text-center">
+                <div class="expense-amount font-weight-bolder">
+                  $ {{ this.amount }}
+                </div>
+                <div class="record-date" style="font-size: 0.5rem;">
+                  {{ this.date }}
+                </div>
               </div>
               <div class="expense-record-right d-flex justify-content-end align-items-center col-2">
                 <div class="record-button-group row">
