@@ -1,13 +1,15 @@
 <div class="form-group d-flex justify-content-end">
   <div class="category-selector">
-    <select name="category" class="form-control" onchange="location = this.value;">
-      <option class="filter-title" value="/">所有類別</option>
-      <option class="filter-house" value="/records/filter?category=house">家居物業</option>
-      <option class="filter-transport" value="/records/filter?category=transport">交通出行</option>
-      <option class="filter-entertainment" value="/records/filter?category=entertainment">休閒娛樂</option>
-      <option class="filter-food" value="/records/filter?category=food">餐飲食品</option>
-      <option class="filter-others" value="/records/filter?category=others">其他</option>
-    </select>
+    <form action="/f" method="GET">
+      <select name="category" class="form-control" onchange="this.form.submit()">
+        <option class="filter-title" value="">所有類別</option>
+        <option class="filter-house" value="house" {{#eq f_category 'house'}} selected {{/eq}}>家居物業</option>
+        <option class="filter-transport" value="transport" {{#eq f_category 'transport'}} selected {{/eq}}>交通出行</option>
+        <option class="filter-entertainment" value="entertainment" {{#eq f_category 'entertainment'}} selected {{/eq}}>休閒娛樂</option>
+        <option class="filter-food" value="food" {{#eq f_category 'food'}} selected {{/eq}}>餐飲食品</option>
+        <option class="filter-others" value="others" {{#eq f_category 'others'}} selected {{/eq}}>其他</option>
+      </select>
+    </form>
   </div>
   <div class="sorting-selector">
     <select name="sorting" class="form-control" onchange="location = this.value;">

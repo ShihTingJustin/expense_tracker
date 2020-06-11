@@ -25,11 +25,13 @@ router.get('/', (req, res) => {
     try {
       const records = await findAllRecords
       const categories = await findAllCategories
-      console.log(categories)
+
+      // total amount
       let totalAmount = 0
       records.forEach(record => {
         totalAmount += Number(record.amount)
       })
+
       res.render('index', { records, totalAmount, categories })
     } catch (e) {
       console.warn(e)

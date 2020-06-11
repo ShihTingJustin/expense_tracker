@@ -45,23 +45,7 @@ router.delete('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// filter
-router.get('/', (req, res) => {
-  const { category } = req.query
-  return Record.find({ category })
-    .lean()
-    .then(records => {
-      let totalAmount = 0
-      if (records.length > 0) {
-        records.forEach(record => totalAmount += Number(record.amount))
-        res.render('index', { records, totalAmount })
-      } else {
-        res.render('nothing', { totalAmount })
-      }
 
-    })
-    .catch(error => console.log(error))
-})
 
 // sorts
 // router.get('/sort/', (req, res) => {
