@@ -36,8 +36,5 @@ module.exports = app => {
       .then(user => done(null, user))
       .catch(err => done(err, null)) // null means user is null
   })
-
-
-
 }
 
