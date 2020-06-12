@@ -5,15 +5,16 @@ const bodyParser = require('body-parser')
 const helpers = require('handlebars-helpers')()
 const methodOverdrive = require('method-override')
 
-
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
 const PORT = process.env.PORT || 3000
 
 app.engine('hbs', exphbs({
-  defaultLayout: 'main', extname: '.hbs' }))
+  defaultLayout: 'main', extname: '.hbs'
+}))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -23,6 +24,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+usePassport(app)
 
 app.use(routes)
 
