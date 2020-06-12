@@ -20,9 +20,29 @@
         <a class="navbar-brand ml-5" href="/" style='font-size:30px;'>Expense Tracker</a>
       </div>
       <div class="header-right font-weight-bold d-flex">
+        {{#if isAuthenticated}}
         <a href="/records/create">
           <button type="submit" class="btn btn-outline-light ml-4 px-3">新增支出</button>
         </a>
+        <div class="dropdown show nav-dropdown ml-3 my-1">
+          <button class="btn btn-outline-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle mr-2"></i>
+            {{#if user.name }}{{ user.name }}{{else}}{{ user.email }}{{/if}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Personal</a>
+            <a class="dropdown-item" href="#">Settings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/u/logout">Logout</a>
+          </div>
+        </div>
+        {{else}}
+        <a href="/u/login">
+          <button type="submit" class="btn btn-outline-light ml-4 px-3">Login</button>
+        </a>
+        {{/if}}
+        
       </div>
     </nav>
   </header>
