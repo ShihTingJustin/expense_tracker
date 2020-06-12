@@ -3,6 +3,7 @@
     <form class="" action="/records/{{ record._id }}?_method=PUT" method="POST" onsubmit="return submitCheck()">
       <input required type="text" placeholder="名稱" name="name" class="form-control input-area"
         value="{{ record.name }}">
+        <input required type="text" placeholder="商家" name="merchant" class="form-control input-area" value="{{ record.merchant }}">
       <input required type="text" placeholder="日期" name="date" class="form-control input-area"
         onfocus="(this.type='date')" onblur="(this.type='text')" value="{{ record.date }}">
       <div class="form-group">
