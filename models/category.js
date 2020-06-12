@@ -3,15 +3,18 @@ const Schema = mongoose.Schema
 const categorySchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   name_en: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   icon: {
     type: String,
-    required: false
+    required: false,
+    unique: true
   }
 })
 
