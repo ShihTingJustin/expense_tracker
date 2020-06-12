@@ -1,8 +1,10 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const helpers = require('handlebars-helpers')()
 const methodOverdrive = require('method-override')
+
 
 const routes = require('./routes')
 require('./config/mongoose')
@@ -16,6 +18,11 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverdrive('_method'))
+app.use(session({
+  secret: 'JHTheDriver',
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use(routes)
 
