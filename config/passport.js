@@ -9,14 +9,16 @@ module.exports = app => {
   app.use(passport.session())
 
   passport.use(new LocalStrategy(
-    { usernameField: 'email' }, (email, password, done) => {
+    { usernameField: 'email', passReqToCallback: true  }, (req, email, password, done) => {
       User.findOne({ email })
         .then(user => {
-          if (!user) {
-            return done(null, false, { message: 'That email is available!' })
+          if (!user) {      
+            req.flash('error_msg', 'This email is not registered.')
+            return done(null, false)
           }
           if (user.password !== password) {
-            return done(null, false, { message: 'Email or Password incorrect!' })
+            req.flash('error_msg', 'Password incorrect.')
+            return done(null, false)
           }
           return done(null, user)
         })
@@ -31,7 +33,7 @@ module.exports = app => {
       .catch(err => done(err, null)) // null means user is null
   })
 
-  
+
 
 }
 
