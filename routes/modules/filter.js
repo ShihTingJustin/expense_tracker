@@ -6,47 +6,143 @@ const Record = require('../../models/record')
 router.get('/', (req, res) => {
   const { category, month } = req.query
   const userId = req.user._id
-  console.log(category, month, userId)
 
+  // user doesn't choose
   if (category === 'all' && month === 'all') {
     return res.redirect('/')
   }
+  // user choose category and month
+  else if (category !== 'all' && month !== 'all') {
+    const filterAmount = Record.aggregate([
+      { $match: { userId, category } },
+      {
+        $group: {
+          _id: { $month: '$date' },
+          amount: { $sum: '$amount' }
+        }
+      },
+      { $match: { _id: Number(month) } }
+    ])
 
-  const totalAmount = Record.aggregate([
-    { $match: { userId, category } },
-    {
-      $group: {
-        _id: null,
-        total: { $sum: '$amount' }
-      }
-    }]).exec()
+    const filterRecord = Record.aggregate([
+      { $match: { userId, category } },
+      {
+        $project: {
+          name: 1,
+          category: 1,
+          date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } },
+          month: { $month: '$date' },
+          amount: 1,
+          merchant: 1
+        }
+      },
+      { $match: { month: Number(month) } }
+    ])
 
-  const allRecord = Record.aggregate([
-    { $match: { userId, category } },
-    {
-      $project: {
-        name: 1,
-        category: 1,
-        date: 1,
-        amount: 1,
-        merchant: 1,
+    async function filterAsync() {
+      const filter = await filterAmount
+      const records = await filterRecord
+
+      if (filter.length > 0) {
+        res.render('index', {
+          records,
+          totalAmount: filter[0].amount,
+          f_category: category,
+          month
+        })
+      } else {
+        res.render('nothing')
       }
     }
-  ])
-
-  async function filterCategory() {
-    // iamironman
-    const total = await totalAmount
-    const records = await allRecord
-
-    res.render('index', {
-      records,
-      totalAmount: total[0].total,
-      f_category: category
-    })
+    filterAsync()
   }
-  filterCategory()
 
+  // user choose category only
+  else if (category !== 'all') {
+    const filterAmount = Record.aggregate([
+      { $match: { userId, category } },
+      {
+        $group: {
+          _id: null,
+          amount: { $sum: '$amount' }
+        }
+      }])
+
+    const filterRecord = Record.aggregate([
+      { $match: { userId, category } },
+      {
+        $project: {
+          name: 1,
+          category: 1,
+          date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } },
+          amount: 1,
+          merchant: 1
+        }
+      }
+    ])
+
+    async function filterAsync() {
+      const filter = await filterAmount
+      const records = await filterRecord
+
+      if (filter.length > 0) {
+        res.render('index', {
+          records,
+          totalAmount: filter[0].amount,
+          f_category: category,
+          month
+        })
+      } else {
+        res.render('nothing')
+      }
+    }
+    filterAsync()
+  }
+  // user choose month only
+  else if (month !== 'all') {
+    const filterAmount = Record.aggregate([
+      { $match: { userId } },
+      {
+        $group: {
+          _id: { $month: '$date' },
+          amount: { $sum: '$amount' }
+        }
+      },
+      { $match: { _id: Number(month) } }
+    ])
+
+    const filterRecord = Record.aggregate([
+      { $match: { userId } },
+      {
+        $project: {
+          name: 1,
+          category: 1,
+          date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } },
+          month: { $month: '$date' },
+          amount: 1,
+          merchant: 1
+        }
+      },
+      { $match: { month: Number(month) } }
+    ])
+
+    async function filterAsync() {
+      const filter = await filterAmount
+      const records = await filterRecord
+
+      if (filter.length > 0) {
+        res.render('index', {
+          records,
+          totalAmount: filter[0].amount,
+          f_category: category,
+          month
+        })
+      } else {
+        res.render('nothing')
+      }
+    }
+    filterAsync()
+  }
 })
 
 // return Record.find({ userId, category })
