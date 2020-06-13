@@ -37,7 +37,7 @@ db.once('open', () => {
           password: hash
         }))
         .then(user => {
-          return resolve(userId = user._id)
+          return resolve(user)
         })
     })
   }
@@ -72,56 +72,103 @@ db.once('open', () => {
     ))
   })
 
-  const createRecord = (userId) => {
+  const createRecord = (user) => {
     return new Promise((resolve, reject) => {
-      return resolve(Record.create(
-        {
-          category: 'house',
-          name: '衛生紙',
-          merchant: '全聯',
-          date: '2020-3-6',
-          amount: '180',
-          userId
-        },
-        {
-          category: 'transport',
-          name: '機車保養',
-          merchant: '巷口機車行',
-          date: '2020-5-1',
-          amount: '250',
-          userId
-        },
-        {
-          category: 'entertainment',
-          name: '看電影',
-          merchant: '美麗華大直影城',
-          date: '2020-1-10',
-          amount: '899',
-          userId
-        },
-        {
-          category: 'food',
-          name: '聚餐',
-          merchant: '老四川',
-          date: '2020-2-7',
-          amount: '2399',
-          userId
-        },
-        {
-          category: 'others',
-          name: '還款',
-          merchant: '',
-          date: '2020-6-10',
-          amount: '500',
-          userId
-        }
-      ))
+      const userId = user._id
+      const { name } = user
+      if (name === 'Iron Man') {
+        return resolve(Record.create(
+          {
+            category: 'house',
+            name: 'mansion decoration',
+            merchant: 'Stark Industries',
+            date: '2020-3-6',
+            amount: '2500000',
+            userId
+          },
+          {
+            category: 'transport',
+            name: 'R8 maintenance',
+            merchant: 'Audi',
+            date: '2020-5-1',
+            amount: '3960',
+            userId
+          },
+          {
+            category: 'entertainment',
+            name: 'Avengers annual party',
+            merchant: 'Stark Industries',
+            date: '2020-1-10',
+            amount: '2500000',
+            userId
+          },
+          {
+            category: 'food',
+            name: 'cheese burger',
+            merchant: 'Burger King',
+            date: '2020-2-7',
+            amount: '15',
+            userId
+          },
+          {
+            category: 'others',
+            name: 'suit',
+            merchant: 'Stark Industries',
+            date: '2020-6-10',
+            amount: '16000000',
+            userId
+          }
+        ))
+      } else {
+        return resolve(Record.create(
+          {
+            category: 'house',
+            name: 'rent',
+            merchant: '',
+            date: '2020-3-6',
+            amount: '1000',
+            userId
+          },
+          {
+            category: 'transport',
+            name: 'Street 750 maintenance',
+            merchant: 'Harley-Davidson',
+            date: '2020-5-1',
+            amount: '790',
+            userId
+          },
+          {
+            category: 'entertainment',
+            name: 'Avengers Annual Party',
+            merchant: 'Stark Industries',
+            date: '2020-1-10',
+            amount: '10',
+            userId
+          },
+          {
+            category: 'food',
+            name: 'steak',
+            merchant: 'steak house',
+            date: '2020-2-7',
+            amount: '50',
+            userId
+          },
+          {
+            category: 'others',
+            name: 'suit',
+            merchant: 'Avengers',
+            date: '2020-6-10',
+            amount: '500',
+            userId
+          }
+        ))
+      }
     })
   }
 
   async function runSeeder() {
-    const userId0 = await createUser(SEED_USER[0])
-    const userId1 = await createUser(SEED_USER[1])
+    const user0 = await createUser(SEED_USER[0])
+    const user1 = await createUser(SEED_USER[1])
     console.log('done!')
     console.log('creating category ...')
 
@@ -129,8 +176,8 @@ db.once('open', () => {
     console.log('done!')
     console.log('Creating record ...')
 
-    await createRecord(userId0)
-    await createRecord(userId1)
+    await createRecord(user0)
+    await createRecord(user1)
     console.log('done!')
     console.log('Seeder Complete!')
     process.exit()

@@ -5,7 +5,8 @@
         <option class="filter-title" value="">所有類別</option>
         <option class="filter-house" value="house" {{#eq f_category 'house'}} selected {{/eq}}>家居物業</option>
         <option class="filter-transport" value="transport" {{#eq f_category 'transport'}} selected {{/eq}}>交通出行</option>
-        <option class="filter-entertainment" value="entertainment" {{#eq f_category 'entertainment'}} selected {{/eq}}>休閒娛樂</option>
+        <option class="filter-entertainment" value="entertainment" {{#eq f_category 'entertainment'}} selected {{/eq}}>
+          休閒娛樂</option>
         <option class="filter-food" value="food" {{#eq f_category 'food'}} selected {{/eq}}>餐飲食品</option>
         <option class="filter-others" value="others" {{#eq f_category 'others'}} selected {{/eq}}>其他</option>
       </select>
@@ -28,28 +29,30 @@
       <small class="mx-3">總金額：</small>
       <h1 class="total-amount">$ {{ totalAmount }}</h1>
     </div>
-    <div class="expense-area col-12">
+    <div class="expense-area col-12 col-md-11 col-lg-8">
       <div class="rounded p-4" style="border: 1.5px solid #007bff;">
         <ul class="list-group list-group-flush" style="height: 380px; overflow: auto;">
           {{#each records}}
           <li class="list-group-item list-group-item-action bg-light">
             <div class="expense-record d-flex">
-              <div class="expense-record-icon d-flex align-items-center col-2">
-                {{#eq this.category 'house'}}<i class="fas fa-home fa-2x "></i>{{/eq}}
+              <div class="expense-record-icon d-flex align-items-center col-1">
+                {{#eq this.category 'house'}}<i class="fas fa-home fa-2x"></i>{{/eq}}
                 {{#eq this.category 'transport'}}<i class="fas fa-car fa-2x"></i>{{/eq}}
                 {{#eq this.category 'entertainment'}}<i class="fas fa-grin-beam fa-2x"></i>{{/eq}}
                 {{#eq this.category 'food'}}<i class="fas fa-utensils fa-2x"></i>{{/eq}}
                 {{#eq this.category 'others'}}<i class="fas fa-ellipsis-h fa-2x"></i>{{/eq}}
               </div>
-              <div class="expense-record-left col-4">
-                <div class="record-name">
+              <div class="expense-record-left ml-3 col-5">
+                <div class="record-name {{#unless this.merchant}} h-100 d-flex align-items-center{{/unless}}">
                   {{ this.name }}
                 </div>
+                {{#if this.merchant}}
                 <div class="record-merchant" style="font-size: 0.5rem;">
                   {{ this.merchant }}
                 </div>
+                {{/if}}
               </div>
-              <div class="record-amount col-4 text-center">
+              <div class="record-amount col-5 text-center m-auto w-25">
                 <div class="expense-amount font-weight-bolder">
                   $ {{ this.amount }}
                 </div>
@@ -57,16 +60,20 @@
                   {{ this.date }}
                 </div>
               </div>
-              <div class="expense-record-right d-flex justify-content-end align-items-center col-2">
-                <div class="record-button-group row">
-                  <form action="/records/edit/{{ this._id }}" method="GET" class="">
-                    <button class="edit-btn fas fa-pen"></button>
-                  </form>
-                  <form action="/records/{{ this._id }}?_method=DELETE" method="POST" onsubmit="return deleteCheck()"
-                    class="">
-                    <button class="delete-btn fas fa-times-circle"></button>
-                  </form>
+              <div class="expense-record-right my-auto d-flex justify-content-end ">
+                <div class="dropdown">
+                  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                    <a href="/records/edit/{{ this._id }}" class="dropdown-item"><i class="fas fa-pen mr-3"></i>edit</a>
+                    <form action="/records/{{ this._id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
+                      <button class="dropdown-item"><i class="fas fa-minus-circle mr-3"></i>delete</button>
+                    </form>
+                  </div>
                 </div>
+
               </div>
             </div>
           </li>
