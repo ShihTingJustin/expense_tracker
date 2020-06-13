@@ -15,17 +15,17 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-dark">
       <div class="header-left">
-        <a class="navbar-brand ml-5" href="/" style='font-size:30px;'>Expense Tracker</a>
+        <a class="navbar-brand ml-3" href="/" style='font-size:30px;'>Expense Tracker</a>
       </div>
       <div class="header-right font-weight-bold d-flex">
         {{#if isAuthenticated}}
         <a href="/records/create">
-          <button type="submit" class="btn btn-outline-light ml-4 px-3">新增支出</button>
+          <button type="submit" class="btn btn-outline-light align-middle">Create</button>
         </a>
-        <div class="dropdown show nav-dropdown ml-3 my-1">
-          <button class="btn btn-outline-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+        <div class="dropdown show nav-dropdown ml-3">
+          <button class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle mr-2"></i>
             {{#if user.name }}{{ user.name }}{{else}}{{ user.email }}{{/if}}
@@ -47,7 +47,7 @@
     </nav>
   </header>
 
-  <body class="bg-light">
+  <body>
     {{{ body }}}
   </body>
   {{!-- bootstrap --}}

@@ -7,6 +7,18 @@
   margin: 0;
 }
 
+body {
+  background: url("https://cdn.wccftech.com/wp-content/uploads/2019/11/MacBook-Pro-wallpaper-desktop-1480x925.png") no-repeat center center;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.expense-scroll-area, .list-group, .list-group-item, .expense-record {
+  background-color: transparent;
+}
+
 .expense-record-icon i {
   color: #6c757d;
 }
@@ -17,12 +29,8 @@
   margin: 0 0.4rem;
 }
 
-.total-amount, .expense-record:hover {
-  color: #007bff;
-}
-
 .edit-btn:hover {
-  color: #28a745;
+  color: #007bff;
 }
 
 .delete-btn:hover {
