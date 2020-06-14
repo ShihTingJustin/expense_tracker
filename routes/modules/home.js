@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     }
   ])
 
-   const findAllCategories = new Promise((resolve, reject) => {
+  const findAllCategories = new Promise((resolve, reject) => {
     Category.find()
       .lean()
       .then(categories => resolve(categories))
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   })
 
   const findAllRecords = Record.aggregate([
-    { $match: { userId }},
+    { $match: { userId } },
     {
       $project: {
         name: 1,
@@ -37,14 +37,21 @@ router.get('/', (req, res) => {
     }
   ])
 
-  async function setHomePage () {
-   const total = await totalAmount
-   const categories = await findAllCategories
-   const records = await findAllRecords
-    res.render('index', { 
-      records, 
-      totalAmount: total[0].amount, 
-      categories })
+  async function setHomePage() {
+    const total = await totalAmount
+    const categories = await findAllCategories
+    const records = await findAllRecords
+
+    if (total.length > 0) {
+      res.render('index', {
+        records,
+        totalAmount: total[0].amount,
+        categories
+      })
+    } else {
+      res.render('nothing')
+    }
+
   }
   setHomePage()
 
