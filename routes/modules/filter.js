@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Record = require('../../models/record')
+const formatNum = require('../../formateNum')
 
 router.get('/', (req, res) => {
   const { category, month } = req.query
@@ -44,14 +45,19 @@ router.get('/', (req, res) => {
       const records = await filterRecord
 
       if (filter.length > 0) {
+        const formateTotal = formatNum(filter[0].amount)
         res.render('index', {
           records,
-          totalAmount: filter[0].amount,
+          totalAmount: formateTotal,
           f_category: category,
           month
         })
       } else {
-        res.render('nothing')
+        res.render('index', {
+          totalAmount: 0,
+          f_category: category,
+          month
+        })
       }
     }
     filterAsync()
@@ -86,14 +92,19 @@ router.get('/', (req, res) => {
       const records = await filterRecord
 
       if (filter.length > 0) {
+        const formateTotal = formatNum(filter[0].amount)
         res.render('index', {
           records,
-          totalAmount: filter[0].amount,
+          totalAmount: formateTotal,
           f_category: category,
           month
         })
       } else {
-        res.render('nothing')
+        res.render('index', {
+          totalAmount: 0,
+          f_category: category,
+          month
+        })
       }
     }
     filterAsync()
@@ -131,33 +142,23 @@ router.get('/', (req, res) => {
       const records = await filterRecord
 
       if (filter.length > 0) {
+        const formateTotal = formatNum(filter[0].amount)
         res.render('index', {
           records,
-          totalAmount: filter[0].amount,
+          totalAmount: formateTotal,
           f_category: category,
           month
         })
       } else {
-        res.render('nothing')
+        res.render('index', {
+          totalAmount: 0,
+          f_category: category,
+          month
+        })
       }
     }
     filterAsync()
   }
 })
-
-// return Record.find({ userId, category })
-//   .lean()
-//   .sort()
-//   .then(records => {
-//     let totalAmount = 0
-//     if (records.length > 0) {
-//       records.forEach(record => totalAmount += Number(record.amount))
-//       res.render('index', { records, totalAmount, f_category: category })
-//     } else {
-//       res.render('nothing', { totalAmount })
-//     }
-
-//   })
-//   .catch(error => console.log(error))
 
 module.exports = router
