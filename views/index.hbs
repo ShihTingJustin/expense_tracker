@@ -2,8 +2,9 @@
   <aside class="mt-3 px-sm-0 col-sm-3 col-md-3 col-lg-3 d-flex align-items-center">
     <div class="form-group col-sm-12 col-md-12 col-lg-12 mt-3">
       <div>
-        <i class="fas fa-filter fa-lg"></i><div class="d-inline" style="font-size: 1.7rem;">Filter</div>
-      </div>      
+        <i class="fas fa-filter fa-lg"></i>
+        <div class="d-inline" style="font-size: 1.7rem;">Filter</div>
+      </div>
       <form action="/f" method="GET">
         <div class="category-selector w-100 mx-auto mt-4">
           <h6><i class="fas fa-tags"></i> Category</h6>
@@ -79,8 +80,9 @@
                 {{/if}}
               </div>
               <div class="record-amount col-5 text-center m-auto w-25">
-                <div class="expense-amount font-weight-bolder">
-                  $ {{ this.amount }}
+                <div class="expense-amount-wrapper font-weight-bolder d-flex justify-content-center">
+                  <div>$&nbsp</div>
+                  <div class="expense-amount">{{ this.amount }}</div>
                 </div>
                 <div class="record-date" style="font-size: 0.5rem;">
                   {{ this.date }}
@@ -92,7 +94,8 @@
                     aria-haspopup="true" aria-expanded="false" style="border: none;">
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a href="/records/edit/{{ this._id }}" class="dropdown-item edit-btn"><i class="fas fa-pen mr-3"></i>edit</a>
+                    <a href="/records/edit/{{ this._id }}" class="dropdown-item edit-btn"><i
+                        class="fas fa-pen mr-3"></i>edit</a>
                     <form action="/records/{{ this._id }}?_method=DELETE" method="POST" onclick="return deleteCheck()">
                       <button class="dropdown-item delete-btn"><i class="fas fa-minus-circle mr-3"></i>delete</button>
                     </form>

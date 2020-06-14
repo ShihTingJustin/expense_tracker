@@ -38,7 +38,7 @@ router.get('/', (req, res) => {
     }
   ])
 
-  async function setHomePage() {
+  async function setHomeAsync() {
     const total = await totalAmount
     const categories = await findAllCategories
     const records = await findAllRecords
@@ -55,46 +55,8 @@ router.get('/', (req, res) => {
     }
 
   }
-  setHomePage()
 
-  // const findAllRecords = new Promise((resolve, reject) => {
-  //   const userId = req.user._id
-  //   Record.find({ userId })
-  //     .lean()
-  //     .then(records => resolve(records))
-  //     .catch(err => console.error(err))
-  //     // reject?
-  // })
-
-  // const findAllCategories = new Promise((resolve, reject) => {
-  //   Category.find()
-  //     .lean()
-  //     .then(categories => resolve(categories))
-  //     .catch(err => console.error(err))
-  // })
-
-  // async function setHomePage() {
-  //   try {
-  //     const records = await findAllRecords
-  //     const categories = await findAllCategories
-
-  //     // total amount
-  //     let totalAmount = 0
-  //     records.forEach(record => {
-  //       totalAmount += Number(record.amount)
-  //     })
-
-  //     res.render('index', { records, totalAmount, categories })
-  //   } catch (e) {
-  //     console.warn(e)
-  //   }
-  // }
-
-  // setHomePage()
+  setHomeAsync()
 })
-
-function setThousand(num) {
-
-}
 
 module.exports = router
