@@ -80,7 +80,7 @@ border: 1.5px solid #007bff;
 /* login page */
 .login-input-group {
   margin: 3rem 0;
-  padding: 0 3rem;
+  padding: 0 1.5rem;
 }
 
 .login-input-group input {
@@ -91,6 +91,7 @@ border: 1.5px solid #007bff;
   background: transparent;
   border-radius: 0;
   letter-spacing: 0.5px;
+  font-size: 0.9rem;
 }
 
 .login-input-group input:focus {
@@ -112,37 +113,37 @@ input + .label {
 #label-login-email {
   position: absolute;
   top: 34%;
-  left: 16%;
+  left: 14%;
 }
 
 #label-login-pd {
   position: absolute;
-  top: 50%;
-  left: 16%;
+  top: 49.5%;
+  left: 14%;
 }
 
 #label-reg-name {
   position: absolute;
   top: 26%;
-  left: 16%;
+  left: 14%;
 }
 
 #label-reg-email {
   position: absolute;
-  top: 38%;
-  left: 16%;
+  top: 37.5%;
+  left: 14%;
 }
 
 #label-reg-pd {
   position: absolute;
-  top: 50%;
-  left: 16%;
+  top: 49.5%;
+  left: 14%;
 }
 
 #label-reg-cpd {
   position: absolute;
-  top: 62%;
-  left: 16%;
+  top: 61%;
+  left: 14%;
 }
 
 .login-btn {

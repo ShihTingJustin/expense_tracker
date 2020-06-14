@@ -34,7 +34,7 @@ router.post('/register', (req, res) => {
   const errors = []
 
   if (!email && !password && !confirmPassword) {
-    errors.push({ message: '請您填寫 Email、密碼及密碼確認欄位' })
+    errors.push({ message: 'Please fill out Email, password and confirm field.' })
   } else if (!email) {
     errors.push({ message: '請填寫您的 Email。' })
   } else if (!password) {
@@ -61,7 +61,16 @@ router.post('/register', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (user) {
-        console.log('this email is registered!')
+        errors.push({ message: 'This email is registered.' })
+        if (errors.length) {
+          return res.render('register', {
+            errors,
+            name,
+            email,
+            password,
+            confirmPassword
+          })
+        }
         res.render('register', {
           name,
           email,

@@ -11,8 +11,13 @@ window.setTimeout(function () {
   $(".alert").alert('close')
 }, 3000);
 
+//
+function requireFiled () {
+  
+}
+
 // create, edit page number formate check
-function submitCheck() {
+function submitCheck () {
   const num = document.querySelectorAll('.expense-formate-check')
   // expense format check
   let formateCheck = ''
