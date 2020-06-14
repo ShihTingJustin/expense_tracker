@@ -8,7 +8,7 @@
 }
 
 body {
-  background: url("https://cdn.wccftech.com/wp-content/uploads/2019/11/MacBook-Pro-wallpaper-desktop-1480x925.png") no-repeat center center;
+  background: url("https://mrmadtw.files.wordpress.com/2017/08/macbook-pro-16-wallpaper-ar72014-blue-desktop.png") no-repeat center center;
 }
 
 .container {
@@ -165,3 +165,21 @@ input + .label {
   color: #ffffff;
 }
 /* login page */
+
+
+/* nothing page */
+.nothing-create-btn {
+  animation: move 1.25s infinite; 
+}
+ @keyframes move {
+  0% {
+    transform: translate3d(0, 0, 0) 
+  }
+  50% {
+    transform: translate3d(0, -20px, 0) 
+  }
+  100% {
+    transform: translate3d(0, 0, 0) 
+  }
+}
+/* nothing page */

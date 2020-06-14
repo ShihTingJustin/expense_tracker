@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require('../../models/category')
+const formatNum = require('../../formateNum')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
@@ -43,9 +44,10 @@ router.get('/', (req, res) => {
     const records = await findAllRecords
 
     if (total.length > 0) {
+      const formateTotal = formatNum(total[0].amount)
       res.render('index', {
         records,
-        totalAmount: total[0].amount,
+        totalAmount: formateTotal,
         categories
       })
     } else {

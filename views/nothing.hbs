@@ -1,44 +1,68 @@
-<div class="form-group d-flex justify-content-end">
-  <div class="category-selector">
-    <select name="category" class="form-control" onchange="location = this.value;">
-      <option class="filter-title" value="">類別篩選</option>
-      <option class="filter-house" value="/records/filter?category=house">家居物業</option>
-      <option class="filter-transport" value="/records/filter?category=transport">交通出行</option>
-      <option class="filter-entertainment" value="/records/filter?category=entertainment">休閒娛樂</option>
-      <option class="filter-food" value="/records/filter?category=food">餐飲食品</option>
-      <option class="filter-others" value="/records/filter?category=others">其他</option>
-    </select>
-  </div>
-  <div class="sorting-selector">
-    <select name="sorting" class="form-control" onchange="location = this.value;">
-      <option class="sort-title" value="">排序方式</option>
-      <option class="sort-amount-desc" name="name" value="/records/sort?name=amount&way=desc">金額(高 ~ 低)</option>
-      <option class="sort-amount-asc" value="/records/sort?name=amount&way=asc">金額(低 ~ 高)</option>
-      <option class="sort-date-desc" value="/records/sort?name=date&way=desc">日期(新 ~ 舊)</option>
-      <option class="sort-date-asc" value="/records/sort?name=date&way=asc">日期(舊 ~ 新)</option>
-    </select>
-  </div>
-</div>
-
-<div class="container w-100">
-  <div class="area mt-3 d-flex flex-column align-items-center">
-
-    <div class="show-total-expense d-flex mb-3">
-      <small class="mx-3">總金額：</small>
-      <h1 class="total-amount">$ {{ totalAmount }}</h1>
-    </div>
-    <div class="expense-area col-12">
-      <div class="rounded  p-4" style="border: 1.5px solid #007bff;">
-        <div class="text-center">查無此類別的相關紀錄哦</div>
+<main class="container row mx-auto mt-3 mt-md-5 rounded">
+  <aside class="mt-3 px-sm-0 col-sm-3 col-md-3 col-lg-3 d-flex align-items-center">
+    <div class="form-group col-sm-12 col-md-12 col-lg-12 mt-3">
+      <div>
+        <i class="fas fa-filter fa-lg"></i>
+        <div class="d-inline" style="font-size: 1.7rem;">Filter</div>
       </div>
+      <form action="/f" method="GET">
+        <div class="category-selector w-100 mx-auto mt-4">
+          <h6><i class="fas fa-tags"></i> Category</h6>
+          <select name="category" class="form-control w-100 border-secondary">
+            <option class="filter-title" value="all">All</option>
+            <option value="house" {{#eq f_category 'house'}} selected {{/eq}}>House</option>
+            <option value="transport" {{#eq f_category 'transport'}} selected {{/eq}}>Transport
+            </option>
+            <option value="entertainment" {{#eq f_category 'entertainment'}} selected {{/eq}}>
+              Entertainment</option>
+            <option value="food" {{#eq f_category 'food'}} selected {{/eq}}>Food</option>
+            <option value="others" {{#eq f_category 'others'}} selected {{/eq}}>Others</option>
+          </select>
+        </div>
+        <div class="month-selector mx-auto mt-4">
+          <h6><i class="fas fa-calendar-alt"></i> Month</h6>
+          <select name="month" class="form-control w-100 border-secondary">
+            <option value="all">All</option>
+            <option {{#eq month '1'}} selected {{/eq}} value="1">1</option>
+            <option {{#eq month '2'}} selected {{/eq}} value="2">2</option>
+            <option {{#eq month '3'}} selected {{/eq}} value="3">3</option>
+            <option {{#eq month '4'}} selected {{/eq}} value="4">4</option>
+            <option {{#eq month '5'}} selected {{/eq}} value="5">5</option>
+            <option {{#eq month '6'}} selected {{/eq}} value="6">6</option>
+            <option {{#eq month '7'}} selected {{/eq}} value="7">7</option>
+            <option {{#eq month '8'}} selected {{/eq}} value="8">8</option>
+            <option {{#eq month '9'}} selected {{/eq}} value="9">9</option>
+            <option {{#eq month '10'}} selected {{/eq}} value="10">10</option>
+            <option {{#eq month '11'}} selected {{/eq}} value="11">11</option>
+            <option {{#eq month '12'}} selected {{/eq}} value="12">12</option>
+          </select>
+        </div>
+        {{!-- <h3>sorter</h3>
+        <div class="sorting-selector mt-5">
+          <select name="sort" class="form-control">
+            <option value="date&desc">日期(新 ~ 舊)</option>
+            <option value="date&asc">日期(舊 ~ 新)</option>
+            <option value="amount&desc">金額(高 ~ 低)</option>
+            <option value="amount&asc">金額(低 ~ 高)</option>
+          </select>
+        </div> --}}
+        <button class="btn btn-outline-secondary btn-block mt-4" type="submit">Submit</button>
+        <a href="/" class="btn btn-outline-danger btn-block mb-2">clear</a>
+      </form>
+    </div>
+  </aside>
+  <section class="area mt-3 d-flex flex-column align-items-center col-12 col-sm-9 px-sm-0 col-md-9 col-lg-9">
+    <div class="show-total-expense d-flex mb-3">
+      <small class="mx-3">Total：</small>
+      <h1 class="total-amount text-danger">$ 0</h1>
+    </div>
+    <div class="expense-area p-5 col-12 col-md-11 col-lg-8">
+      <div class="text-center">Let's create your first record !</div>              
       <div class="text-center">
         <a href="/records/create">
-          <button class="create-btn btn btn-outline-primary mt-3 mb-5">新增支出</button>
+          <button class="create-btn nothing-create-btn btn btn-outline-secondary w-50 my-4">Create</button>
         </a>
       </div>
     </div>
-  </div>
-
-
-
-</div>
+  </section>
+</main>
