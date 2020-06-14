@@ -48,6 +48,17 @@ Now you can browse the website on
 ```
 http://localhost:3000
 ```
+
+## Test Account
+
+```
+email: tony@stark.com
+password: iamironman
+
+email: captain@hotmail.com
+password: icandothisallday
+```
+
 ## Built With
 * Node.js: 10.15.0
 * bcryptjs: 2.4.3
