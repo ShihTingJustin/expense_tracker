@@ -6,6 +6,11 @@
   })
 })()
 
+// alert auto dismiss
+window.setTimeout(function () {
+  $(".alert").alert('close')
+}, 3000);
+
 // create, edit page number formate check
 function submitCheck() {
   const num = document.querySelectorAll('.expense-formate-check')

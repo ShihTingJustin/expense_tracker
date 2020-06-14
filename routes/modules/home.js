@@ -53,7 +53,6 @@ router.get('/', (req, res) => {
     } else {
       res.render('nothing')
     }
-
   }
 
   setHomeAsync()
