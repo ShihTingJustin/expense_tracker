@@ -7,8 +7,9 @@ A simple expense tracker built with Node.js and Express.
 3. See total expense amount
 4. Filter record by category and month **(New)**
 5. Login and create account **(New)**
-6. Sort record after filter record by category  **(*In Progress*)**
-7. 
+6. Sort record **(*In Progress*)**
+7. Add category **(*In Progress*)**
+8. Show expense in chart **(*In Progress*)**
 
 ![](https://i.imgur.com/YQt2csO.png)
 ![](https://i.imgur.com/jjL1W2A.jpg)
